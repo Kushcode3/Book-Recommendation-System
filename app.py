@@ -26,7 +26,8 @@ def recommend(book_name):
         data = []
         for i in similar_items:
             item = []
-            temp_df = books_with_ratings[books_with_ratings['Book-Title'] == pt.index[i[0]]]
+            book_title = pt.index[i[0]]
+            temp_df = books_with_ratings[books_with_ratings['Book-Title'].str.lower() == book_title.lower()]
             item.extend(list(temp_df.drop_duplicates('Book-Title')['Book-Title'].values))
             item.extend(list(temp_df.drop_duplicates('Book-Title')['Book-Author'].values))
 
